@@ -1,7 +1,9 @@
 package com.zipcodewilmington;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * Created by leon on 1/29/18.
@@ -75,7 +77,9 @@ public class StringArrayUtils {
      * @return true if the order of the array is the same backwards and forwards
      */ // TODO
     public static boolean isPalindromic(String[] array) {
-        return false;
+      return Arrays.equals(array,reverse(array));
+      //  return Arrays.equals(array,reverse(Arrays.copyOf(array,array.length)));  //don't understamnd we need copy
+
     }
 
     /**
@@ -108,14 +112,16 @@ public class StringArrayUtils {
      */ // TODO
     public static String[] removeValue(String[] array, String valueToRemove) {
         ArrayList<String> al=new ArrayList<String>(Arrays.asList(array));
+        //List<String> al=Arrays.asList(array);  //not working
         ArrayList<String> removedAl=new ArrayList<>();
-        for(String s:al){
-            if(al.equals(valueToRemove))
-                removedAl.add(s);
 
+        for(String s:al){
+            if(s.equals(valueToRemove))
+                removedAl.add(s);
         }
         System.out.println("string removed:"+removedAl);
         al.removeAll(removedAl);
+        //System.out.println(al);
 
         String[] st=al.toArray(new String[al.size()]); //converts ArrayList to String[]
         return st;
@@ -127,7 +133,18 @@ public class StringArrayUtils {
      * @return array of Strings with consecutive duplicates removes
      */ // TODO
     public static String[] removeConsecutiveDuplicates(String[] array) {
-        return null;
+        ArrayList<String> al=new ArrayList<>(Arrays.asList(array));
+        ArrayList<String> removeCon=new ArrayList<>();
+
+       for (int i=0; i<al.size();i++){
+//           if(al[i].equals(al[i+1])){
+//               removeCon.add(al[i]);
+//           }
+           System.out.println("string removed:"+removeCon);
+           al.removeAll(removeCon);
+       }
+       String[] st=al.toArray(new String[al.size()]);
+      return st;
     }
 
     /**
