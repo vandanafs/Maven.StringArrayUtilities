@@ -19,7 +19,8 @@ public class GetNumberOfOccurrencesTest {
         String[] array = {"aba", "aba", "baa", "bab", "bba", "bba", "bba", "bba", "bbb", "bbb"};
         int expected = 2;
         int actual = StringArrayUtils.getNumberOfOccurrences(array, "bbb");
-        Assert.assertEquals(actual, expected);
+        System.out.println("actual couint:"+ actual);
+        Assert.assertEquals(expected,actual);
     }
 
     @Test

@@ -1,5 +1,8 @@
 package com.zipcodewilmington;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 /**
  * Created by leon on 1/29/18.
  */
@@ -25,7 +28,7 @@ public class StringArrayUtils {
      * @return last element in specified array
      */ // TODO
     public static String getLastElement(String[] array) {
-        return null;
+        return  array[array.length-1];
     }
 
     /**
@@ -33,7 +36,7 @@ public class StringArrayUtils {
      * @return second to last element in specified array
      */ // TODO
     public static String getSecondToLastElement(String[] array) {
-        return null;
+        return array[array.length-2];
     }
 
     /**
@@ -42,7 +45,10 @@ public class StringArrayUtils {
      * @return true if the array contains the specified `value`
      */ // TODO
     public static boolean contains(String[] array, String value) {
-        return false;
+        for(String ar:array){
+            if( ar.contains(value));
+        }
+        return true;
     }
 
     /**
@@ -50,7 +56,18 @@ public class StringArrayUtils {
      * @return an array with identical contents in reverse order
      */ // TODO
     public static String[] reverse(String[] array) {
-        return null;
+        int i=0;
+        int length=array.length-1;
+        String[] result = new String[array.length];
+        while(length>=0){
+            //  System.out.println(array[length]);
+            result[i] = array[length];
+            length--;
+            i++;
+        }
+        System.out.println(Arrays.toString(result));
+        return result;
+
     }
 
     /**
@@ -75,7 +92,13 @@ public class StringArrayUtils {
      * @return number of occurrences the specified `value` has occurred
      */ // TODO
     public static int getNumberOfOccurrences(String[] array, String value) {
-        return 0;
+        int count=0;
+        for(int i=0; i<array.length-1; i++){
+
+            if(array[i].equals(value))
+                count++;
+        }
+        return count;
     }
 
     /**
@@ -84,7 +107,19 @@ public class StringArrayUtils {
      * @return array with identical contents excluding values of `value`
      */ // TODO
     public static String[] removeValue(String[] array, String valueToRemove) {
-        return null;
+        ArrayList<String> al=new ArrayList<String>(Arrays.asList(array));
+        ArrayList<String> removedAl=new ArrayList<>();
+        for(String s:al){
+            if(al.equals(valueToRemove))
+                removedAl.add(s);
+
+        }
+        System.out.println("string removed:"+removedAl);
+        al.removeAll(removedAl);
+
+        String[] st=al.toArray(new String[al.size()]); //converts ArrayList to String[]
+        return st;
+
     }
 
     /**
