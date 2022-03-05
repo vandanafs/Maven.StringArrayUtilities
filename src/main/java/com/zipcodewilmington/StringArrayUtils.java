@@ -4,6 +4,7 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Created by leon on 1/29/18.
@@ -86,8 +87,26 @@ public class StringArrayUtils {
      * @param array array of String objects
      * @return true if each letter in the alphabet has been used in the array
      */ // TODO
-    public static boolean isPangramic(String[] array) {
-        return false;
+    public static boolean isPangramic(String[] array)
+    {
+         String lower=Arrays.toString(array).toLowerCase();
+
+         String alphabets="abcdefghijklmnopqrstuvwxyz";
+         int count=0;
+         boolean flag=false;
+         for(int  i=0; i<alphabets.length();i++){
+              for(int j=0;j<lower.length();j++){
+                     if(alphabets.charAt(i)==lower.charAt(j)){
+                         count++;
+                         break;
+                     }
+              }}
+        System.out.println("count :"+count);
+         if(count==26){
+             flag=true;
+         }
+
+        return flag;
     }
 
     /**
@@ -97,7 +116,7 @@ public class StringArrayUtils {
      */ // TODO
     public static int getNumberOfOccurrences(String[] array, String value) {
         int count=0;
-        for(int i=0; i<array.length-1; i++){
+        for(int i=0; i<array.length; i++){
 
             if(array[i].equals(value))
                 count++;
