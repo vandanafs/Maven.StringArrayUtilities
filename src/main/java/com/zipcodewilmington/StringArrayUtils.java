@@ -111,8 +111,7 @@ public class StringArrayUtils {
      * @return array with identical contents excluding values of `value`
      */ // TODO
     public static String[] removeValue(String[] array, String valueToRemove) {
-        ArrayList<String> al=new ArrayList<String>(Arrays.asList(array));
-        //List<String> al=Arrays.asList(array);  //not working
+        ArrayList<String> al=new ArrayList<String>(Arrays.asList(array)); //convert given array to AL
         ArrayList<String> removedAl=new ArrayList<>();
 
         for(String s:al){
@@ -121,13 +120,21 @@ public class StringArrayUtils {
         }
         System.out.println("string removed:"+removedAl);
         al.removeAll(removedAl);
-        //System.out.println(al);
+
 
         String[] st=al.toArray(new String[al.size()]); //converts ArrayList to String[]
         return st;
 
     }
-
+        public static String[]  remove(String[] array, String valueToRemove){
+          ArrayList<String> newArr=new ArrayList<>();
+          for(String s: array){
+               if(!s.equals(valueToRemove)){
+                   newArr.add(s);
+               }
+          }
+          return newArr.toArray(new String[newArr.size()]);
+        }
     /**
      * @param array array of chars
      * @return array of Strings with consecutive duplicates removes
@@ -136,14 +143,27 @@ public class StringArrayUtils {
         ArrayList<String> al=new ArrayList<>(Arrays.asList(array));
         ArrayList<String> removeCon=new ArrayList<>();
 
-       for (int i=0; i<al.size();i++){
-//           if(al[i].equals(al[i+1])){
-//               removeCon.add(al[i]);
-//           }
-           System.out.println("string removed:"+removeCon);
-           al.removeAll(removeCon);
-       }
-       String[] st=al.toArray(new String[al.size()]);
+       for (int i=0; i<=array.length-1;i++){
+
+          if(i<=array.length-2) {
+              if (!array[i].equals(array[i + 1])) {
+                  removeCon.add(array[i]);
+                  if (i == array.length - 2) {
+                      removeCon.add(array[i + 1]);
+               }
+              }
+              else {
+                  if(i == array.length -2)
+                  {    removeCon.add(array[i]);
+                  }
+            //      removeCon.add([array[i+1]);
+
+              }
+              }
+          }
+
+        System.out.println("string removed:"+removeCon);
+       String[] st=removeCon.toArray(new String[removeCon.size()]);
       return st;
     }
 
@@ -152,8 +172,50 @@ public class StringArrayUtils {
      * @return array of Strings with each consecutive duplicate occurrence concatenated as a single string in an array of Strings
      */ // TODO
     public static String[] packConsecutiveDuplicates(String[] array) {
-        return null;
+        ArrayList<String> packConDupli = new ArrayList<>();
+        for (int i = 0; i < array.length-1;) {
+
+            int count = 1;
+            String st = array[i];
+            int j = i + 1;
+            if(i!=array.length-1) {
+                while (array[i].equals(array[j])) {
+                    count++;
+
+                    st += array[j]; //aa
+
+                    j = j +1; //2
+                    if(j==array.length-1){
+                        st+=array[j];
+                        break;
+                    }
+
+                }
+            }
+            packConDupli.add(st);
+
+            i = i +  count; //shift for loop to count index
+
+        }
+        System.out.println("string:"+packConDupli);
+        String[] st = packConDupli.toArray(new String[packConDupli.size()]);
+        System.out.println("string:"+st);
+        return st;
     }
+//        ArrayList<String> packConDupli=new ArrayList<>();
+//        for(int i=0;i< array.length-1;i++){
+//            if(array[i].equals(array[i+1])){
+//                packConDupli.add(array[i]+array[i+1]);
+//            }
+//            else{
+//                packConDupli.add(array[i]);
+//            }
+//
+//        }
+//        System.out.println(packConDupli);
+//        String[] st=packConDupli.toArray(new String[packConDupli.size()]);
+//        return st;
+
 
 
 }
