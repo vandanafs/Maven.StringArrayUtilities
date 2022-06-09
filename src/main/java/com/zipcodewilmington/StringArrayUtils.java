@@ -72,6 +72,20 @@ public class StringArrayUtils {
         return result;
 
     }
+    public static String[] reverse1(String[] array) {
+
+        String[]  res=new String[array.length];
+        int i=0;
+        int length=array.length-1;
+        while(0<=length){  ///if i is taken in while loop it doesn't work
+            res[i]=array[length];
+            i++;
+            length--;
+        }
+
+        return res; //doesn't work
+
+    }
 
     /**
      * @param array array of String objects
@@ -89,6 +103,7 @@ public class StringArrayUtils {
      */ // TODO
     public static boolean isPangramic(String[] array)
     {
+        System.out.println(Arrays.toString(array));
          String lower=Arrays.toString(array).toLowerCase();
 
          String alphabets="abcdefghijklmnopqrstuvwxyz";
@@ -152,14 +167,14 @@ public class StringArrayUtils {
                    newArr.add(s);
                }
           }
-          return newArr.toArray(new String[newArr.size()]);
+          return newArr.toArray(new String[newArr.size()]);//converts ArrayList to String[]
         }
     /**
      * @param array array of chars
      * @return array of Strings with consecutive duplicates removes
      */ // TODO
     public static String[] removeConsecutiveDuplicates(String[] array) {
-        ArrayList<String> al=new ArrayList<>(Arrays.asList(array));
+
         ArrayList<String> removeCon=new ArrayList<>();
 
        for (int i=0; i<=array.length-1;i++){
@@ -192,7 +207,7 @@ public class StringArrayUtils {
      */ // TODO
     public static String[] packConsecutiveDuplicates(String[] array) {
         ArrayList<String> packConDupli = new ArrayList<>();
-        for (int i = 0; i < array.length-1;) {
+        for (int i = 0; i <=array.length-2;) {
 
             int count = 1;
             String st = array[i];
